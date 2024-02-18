@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function DataFetchingComponent() {
+export function GottaFetchEmAll({id}) {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
     const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/`)
@@ -8,7 +8,7 @@ export function DataFetchingComponent() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${url}69`)
+                const response = await fetch(`${url}${id}`)
                 if (!response.ok) {
                     throw new Error(`Failed to fetch: ${response.status}`)
                 }
@@ -28,9 +28,9 @@ export function DataFetchingComponent() {
     if(error) return <p>Error: {error}</p>
     if(!data) return <p>Loading...</p>
     return (
-        <div>
+        <button className="pokeCard">
             <p>{data.name}</p>
-            <img src={data.sprites.front_default} alt="" />
-        </div>
+            <img src={data.sprites.front_default} alt={`${data.name} character image`} />
+        </button>
     )
 }
