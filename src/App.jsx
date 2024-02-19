@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { GottaFetchEmAll } from './PokemonApi';
-import {PokeBtns} from './PokeBtns';
 
 function App() {
   const [isGameOver, setIsGameOver] = useState(false)
@@ -9,7 +8,7 @@ function App() {
   const [clicked, setClicked] = useState([])  
   const [score, setScore] = useState(0)
   const [highScore, setHighScore] = useState(0) 
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('Click each Pokemon only once!')
 
   function checkHighScore(newScore) {
     if (newScore > highScore) {
@@ -22,22 +21,19 @@ function App() {
     setScore(0)
     setMessage('')
     setClicked([])
-}
+  }
 
   function checkWin() {
-    if (score === 11) {
-      //game over player wins
+    if (score === 10) {
       setMessage('You Win!')
       setIsGameOver(true)
       return
     } 
   }
 
-  function checkLoss(index, id) {
-   
+  function checkLoss(index, id) {   
     if (clicked[index] === id) {
-      //game over player loses
-      setMessage('You Lose')
+      setMessage('Gaem Over')
       setIsGameOver(true)
       return
     }
@@ -54,10 +50,9 @@ function App() {
     }
   }
 
-  function handleOrder() {
+  function shuffleOrder() {
     setOrder(prevOrder => {
-      const newOrder = [...prevOrder]
-     
+      const newOrder = [...prevOrder]     
       for (let i = newOrder.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [newOrder[i], newOrder[j]] = [newOrder[j], newOrder[i]]
@@ -68,13 +63,16 @@ function App() {
 
   // useEffect to shuffle before initial load
   useEffect(() => {
-    handleOrder()
+    shuffleOrder()
   }, []) // Empty array means this effect runs once on mount
-
-
 
   return (
    <div>
+     <div className='flex'>
+     <p>Score: {score}</p>
+      <p>High Score: {highScore}</p>
+     </div>
+    
      <div className='cardsDiv'>
       {order.map((num) => (
          <GottaFetchEmAll  
@@ -82,7 +80,7 @@ function App() {
           id={num} 
           clicked={clicked} 
           setClicked={setClicked} 
-          handleOrder={handleOrder}
+          shuffleOrder={shuffleOrder}
           setScore={setScore}
           score={score}
           setIsGameOver={setIsGameOver}
@@ -91,15 +89,12 @@ function App() {
           checkLoss={checkLoss}
           checkWin={checkWin}
           isGameOver={isGameOver}
-          score={score}
           newGame={newGame}
         />    
       ))}
     </div>
-    {message !== '' && <p>{message}</p>}
-      <p>Score: {score}</p>
-      <p>High Score: {highScore}</p>
-
+      {message !== '' && <p>{message}</p>}
+      {isGameOver && <button onClick={() => newGame()}>New Game</button>}
    </div>
   )
 }
