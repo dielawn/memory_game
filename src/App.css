@@ -12,5 +12,18 @@
 
 .cardsDiv{
   display: grid;
-  grid-template-columns: repeat(4, minmax(150px, 1fr) );
+ 
+}
+
+.lvl1,
+.lvl2 {
+  grid-template-columns: repeat(4, minmax(50px, 1fr) );
+}
+
+.lvl3{
+  grid-template-columns: repeat(5, minmax(50px, 1fr) );
+}
+
+.lvl3 {
+  grid-template-columns: repeat(4, minmax(50px, 1fr) );
 }

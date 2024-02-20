@@ -3,8 +3,15 @@ import './App.css';
 import { GottaFetchEmAll } from './PokemonApi';
 
 function App() {
+  const [gameTiles, setGameTiles] = useState(8)
+  const [level, setLevel] = useState(1)
+  const [isLevelComplete, setIsLevelComplete] = useState(false)
+
+
   const [isGameOver, setIsGameOver] = useState(false)
-  const [order, setOrder] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+  
+  const [order, setOrder] = useState([...Array(gameTiles).keys()].map(i => i + 1));
+ 
   const [clicked, setClicked] = useState([])  
   const [score, setScore] = useState(0)
   const [highScore, setHighScore] = useState(0) 
@@ -16,17 +23,50 @@ function App() {
     }
   }
 
+
   function newGame() {
     setIsGameOver(false)
     setScore(0)
-    setMessage('')
+    setMessage('Click each Pokemon only once!')
     setClicked([])
+    setGameTiles(8)
+    setLevel(1)
+    setIsLevelComplete(false)
   }
 
+
+  function handleLevel() {
+    console.log(`level: ${level} gameTiles: ${gameTiles}`)
+    setLevel((prevLevel) => {
+      const newLevel = prevLevel + 1
+      return newLevel
+    })
+    setGameTiles((prevLength ) => {
+      console.log(prevLength)
+    const newLength = prevLength * 2
+    console.log(newLength)
+      return newLength
+    })
+    setIsLevelComplete(false)
+    setClicked([])
+    
+    console.log(`level: ${level} gameTiles: ${gameTiles}`)
+  }
+  useEffect(() => {
+    setOrder([...Array(gameTiles).keys()].map(i => i + 1))
+    console.log(`Updated order based on new gameTiles: ${gameTiles}`);
+  }, [gameTiles])
+
   function checkWin() {
-    if (score === 10) {
-      setMessage('You Win!')
-      setIsGameOver(true)
+    if (score === gameTiles - 1) {
+      setMessage(`You Beat ${level}!`)
+      setIsLevelComplete(true)
+      if (level >= 5) {
+        setMessage('You Win!')
+        setIsGameOver(true)
+        return
+      }
+     
       return
     } 
   }
@@ -39,6 +79,8 @@ function App() {
     }
     return
   }
+
+
 
   function handleScore(){
     if (!isGameOver) {
@@ -64,16 +106,18 @@ function App() {
   // useEffect to shuffle before initial load
   useEffect(() => {
     shuffleOrder()
-  }, []) // Empty array means this effect runs once on mount
+    console.log(`Effect running: level = ${level}, gameTiles = ${gameTiles} order = ${order.length}`)
+  }, [level, gameTiles])
 
   return (
    <div>
      <div className='flex'>
      <p>Score: {score}</p>
       <p>High Score: {highScore}</p>
+      <p>Level: {level}</p>
      </div>
     
-     <div className='cardsDiv'>
+     <div className={`cardsDiv lvl${level}`}>
       {order.map((num) => (
          <GottaFetchEmAll  
           key={num} 
@@ -90,11 +134,13 @@ function App() {
           checkWin={checkWin}
           isGameOver={isGameOver}
           newGame={newGame}
+          order={order}
         />    
       ))}
     </div>
       {message !== '' && <p>{message}</p>}
       {isGameOver && <button onClick={() => newGame()}>New Game</button>}
+      {isLevelComplete && !isGameOver && <button onClick={() =>  handleLevel()}>Next Level</button>}
    </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function GottaFetchEmAll({id, clicked, setClicked, shuffleOrder, handleScore, checkLoss, checkWin, isGameOver, score }) {
+export function GottaFetchEmAll({id, clicked, setClicked, shuffleOrder, handleScore, checkLoss, checkWin, isGameOver, score, order }) {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
     const url =`https://pokeapi.co/api/v2/pokemon/`
@@ -21,7 +21,7 @@ export function GottaFetchEmAll({id, clicked, setClicked, shuffleOrder, handleSc
         fetchData()
         return () => {
         }
-    }, [clicked, setClicked, id, score, isGameOver])
+    }, [clicked, setClicked, id, score, isGameOver, order])
 
     if(error) return <p>Error: {error}</p>
     if(!data) return <p>Loading...</p>
