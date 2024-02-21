@@ -3,10 +3,15 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
 .flex {
   display: flex;
   justify-content: space-around;
+}
+
+.pokeCard {
+  background-color: rgba(0, 0, 0, 0.311);
 }
 
 
@@ -20,10 +25,21 @@
   grid-template-columns: repeat(4, minmax(50px, 1fr) );
 }
 
-.lvl3{
+.lvl3,
+.lvl4{
   grid-template-columns: repeat(8, minmax(50px, 1fr) );
 }
 
-.lvl4 {
-  grid-template-columns: repeat(8, minmax(50px, 1fr) );
+.lvl5 {
+  grid-template-columns: repeat(10, minmax(50px, 1fr) );
+}
+
+@media screen and (max-width: 800px) {
+  .lvl1,
+  .lvl2,
+  .lvl3,
+  .lvl4,
+  .lvl5 {
+    grid-template-columns: repeat(4, minmax(50px, 1fr) );
+  }
 }
