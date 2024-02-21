@@ -16,14 +16,14 @@
 }
 
 .lvl1,
-.lvl2 {
+.lvl2{
   grid-template-columns: repeat(4, minmax(50px, 1fr) );
 }
 
 .lvl3{
-  grid-template-columns: repeat(5, minmax(50px, 1fr) );
+  grid-template-columns: repeat(8, minmax(50px, 1fr) );
 }
 
-.lvl3 {
-  grid-template-columns: repeat(4, minmax(50px, 1fr) );
+.lvl4 {
+  grid-template-columns: repeat(8, minmax(50px, 1fr) );
 }

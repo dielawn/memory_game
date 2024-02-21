@@ -17,6 +17,7 @@ function App() {
   const [highScore, setHighScore] = useState(0) 
   const [message, setMessage] = useState('Click each Pokemon only once!')
 
+
   function checkHighScore(newScore) {
     if (newScore > highScore) {
       setHighScore(newScore)
@@ -32,36 +33,43 @@ function App() {
     setGameTiles(8)
     setLevel(1)
     setIsLevelComplete(false)
+    console.log(isLevelComplete)
   }
 
+  useEffect(() => {      
+    setGameTiles((prevLength) => {
+      console.log(`Level updated to ${level}, recalculating gameTiles.`)
+      return Math.pow(2, level + 2)
+    })
+  }, [level])
 
-  function handleLevel() {
-    console.log(`level: ${level} gameTiles: ${gameTiles}`)
-    setLevel((prevLevel) => {
-      const newLevel = prevLevel + 1
-      return newLevel
-    })
-    setGameTiles((prevLength ) => {
-      console.log(prevLength)
-    const newLength = prevLength * 2
-    console.log(newLength)
-      return newLength
-    })
-    setIsLevelComplete(false)
-    setClicked([])
-    
-    console.log(`level: ${level} gameTiles: ${gameTiles}`)
-  }
+
   useEffect(() => {
     setOrder([...Array(gameTiles).keys()].map(i => i + 1))
+   
     console.log(`Updated order based on new gameTiles: ${gameTiles}`);
   }, [gameTiles])
 
+  useEffect(() => {
+      setClicked([])
+      setIsLevelComplete(false)
+  }, [isLevelComplete])
+
+
+//score 8, 16, 32, 64, 128
+
   function checkWin() {
-    if (score === gameTiles - 1) {
-      setMessage(`You Beat ${level}!`)
+    
+    if (score === 7 || score === 23 || score === 54 || score === 108) {
+      console.log(gameTiles)
+      setMessage(`You Beat Level: ${level}!`)
+       setLevel((prevLevel) => {
+      const newLevel = prevLevel + 1
+      return newLevel
+    })
       setIsLevelComplete(true)
-      if (level >= 5) {
+      console.log(isLevelComplete)
+      if (score === 236) {
         setMessage('You Win!')
         setIsGameOver(true)
         return
@@ -70,6 +78,8 @@ function App() {
       return
     } 
   }
+
+ 
 
   function checkLoss(index, id) {   
     if (clicked[index] === id) {
@@ -140,7 +150,7 @@ function App() {
     </div>
       {message !== '' && <p>{message}</p>}
       {isGameOver && <button onClick={() => newGame()}>New Game</button>}
-      {isLevelComplete && !isGameOver && <button onClick={() =>  handleLevel()}>Next Level</button>}
+      
    </div>
   )
 }
