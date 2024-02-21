@@ -6,24 +6,18 @@ function App() {
   const [gameTiles, setGameTiles] = useState(8)
   const [level, setLevel] = useState(1)
   const [isLevelComplete, setIsLevelComplete] = useState(false)
-
-
-  const [isGameOver, setIsGameOver] = useState(false)
-  
-  const [order, setOrder] = useState([...Array(gameTiles).keys()].map(i => i + 1));
- 
+  const [isGameOver, setIsGameOver] = useState(false)  
+  const [order, setOrder] = useState([...Array(gameTiles).keys()].map(i => i + 1)); 
   const [clicked, setClicked] = useState([])  
   const [score, setScore] = useState(0)
   const [highScore, setHighScore] = useState(0) 
   const [message, setMessage] = useState('Click each Pokemon only once!')
-
 
   function checkHighScore(newScore) {
     if (newScore > highScore) {
       setHighScore(newScore)
     }
   }
-
 
   function newGame() {
     setIsGameOver(false)
@@ -36,20 +30,21 @@ function App() {
     console.log(isLevelComplete)
   }
 
+  //when level changes number of game tiles doubles 
   useEffect(() => {      
-    setGameTiles((prevLength) => {
+    setGameTiles(() => {
       console.log(`Level updated to ${level}, recalculating gameTiles.`)
       return Math.pow(2, level + 2)
     })
   }, [level])
 
-
+  //update array length to render additional tiles
   useEffect(() => {
-    setOrder([...Array(gameTiles).keys()].map(i => i + 1))
-   
+    setOrder([...Array(gameTiles).keys()].map(i => i + 1))   
     console.log(`Updated order based on new gameTiles: ${gameTiles}`);
   }, [gameTiles])
 
+  //empty clicked array so tiles can be clicked again in new level, 
   useEffect(() => {
       setClicked([])
       setIsLevelComplete(false)
@@ -60,7 +55,7 @@ function App() {
 
   function checkWin() {
     
-    if (score === 7 || score === 23 || score === 54 || score === 108) {
+    if (score === 7 || score === 23 || score === 55 || score === 119) {
       console.log(gameTiles)
       setMessage(`You Beat Level: ${level}!`)
        setLevel((prevLevel) => {
@@ -69,7 +64,7 @@ function App() {
     })
       setIsLevelComplete(true)
       console.log(isLevelComplete)
-      if (score === 236) {
+      if (score === 247) {
         setMessage('You Win!')
         setIsGameOver(true)
         return
