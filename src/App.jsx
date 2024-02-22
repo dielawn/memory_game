@@ -12,12 +12,7 @@ function App() {
   const [score, setScore] = useState(0)
   const [highScore, setHighScore] = useState(0) 
   const [message, setMessage] = useState('Click each Pokemon only once!')
-
-  function checkHighScore(newScore) {
-    if (newScore > highScore) {
-      setHighScore(newScore)
-    }
-  }
+  const [remaining, setRemaining] = useState([])
 
   function newGame() {
     setIsGameOver(false)
@@ -29,6 +24,24 @@ function App() {
     setIsLevelComplete(false)
     console.log(isLevelComplete)
   }
+
+  //shuffle algo
+  function shuffleOrder() {
+    setOrder(prevOrder => {
+      const newOrder = [...prevOrder]     
+      for (let i = newOrder.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newOrder[i], newOrder[j]] = [newOrder[j], newOrder[i]]
+      }
+      return newOrder
+    })
+  }
+  
+  // useEffect to shuffle before initial load
+  useEffect(() => {
+    shuffleOrder()
+    console.log(`Effect running: level = ${level}, gameTiles = ${gameTiles} order = ${order.length}`)
+  }, [level, gameTiles])
 
   //when level changes number of game tiles doubles 
   useEffect(() => {      
@@ -50,43 +63,47 @@ function App() {
       setIsLevelComplete(false)
   }, [isLevelComplete])
 
-
-//score 8, 16, 32, 64, 128
-
   function checkWin() {
-    
-    if (score === 7 || score === 23 || score === 55 || score === 119) {
-      console.log(gameTiles)
+    //winning score for each level
+    if (clicked.length + 1 === gameTiles) {
       setMessage(`You Beat Level: ${level}!`)
-       setLevel((prevLevel) => {
+      setIsLevelComplete(true)
+      setLevel((prevLevel) => {
       const newLevel = prevLevel + 1
       return newLevel
     })
-      setIsLevelComplete(true)
-      console.log(isLevelComplete)
-      if (score === 247) {
-        setMessage('You Win!')
-        setIsGameOver(true)
-        return
-      }
+    //final level win score 
+    if (score === 247) {
+      setMessage('You Win!')
+      setIsGameOver(true)
+      return
+    }
      
       return
     } 
   }
 
- 
+  function displayRemaining() {
+    setRemaining(order.filter(item => !clicked.includes(item)))
+  }
 
+  //if any element in clicked array matches current id tile has been clicked before, game over.
   function checkLoss(index, id) {   
     if (clicked[index] === id) {
       setMessage('Gaem Over')
+     
       setIsGameOver(true)
       return
     }
     return
   }
 
-
-
+  function checkHighScore(newScore) {
+    if (newScore > highScore) {
+      setHighScore(newScore)
+    }
+  }
+  // increase score and check for high score
   function handleScore(){
     if (!isGameOver) {
       setScore((prevScore) => {
@@ -96,23 +113,10 @@ function App() {
       })
     }
   }
+useEffect(() => {
+  displayRemaining()
+}, [isGameOver])
 
-  function shuffleOrder() {
-    setOrder(prevOrder => {
-      const newOrder = [...prevOrder]     
-      for (let i = newOrder.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newOrder[i], newOrder[j]] = [newOrder[j], newOrder[i]]
-      }
-      return newOrder
-    })
-  }
-
-  // useEffect to shuffle before initial load
-  useEffect(() => {
-    shuffleOrder()
-    console.log(`Effect running: level = ${level}, gameTiles = ${gameTiles} order = ${order.length}`)
-  }, [level, gameTiles])
 
   return (
    <div>
@@ -140,6 +144,7 @@ function App() {
           isGameOver={isGameOver}
           newGame={newGame}
           order={order}
+          remaining={remaining}
         />    
       ))}
     </div>

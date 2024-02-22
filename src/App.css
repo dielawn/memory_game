@@ -10,7 +10,9 @@
 }
 
 .pokeCard {
-  background-color: rgba(0, 0, 0, 0.368);
+  background-color: #211d1d;
+  border: solid 1px whitesmoke;
+  margin: 5px;
 }
 
 

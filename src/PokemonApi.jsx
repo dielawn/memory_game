@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function GottaFetchEmAll({id, clicked, setClicked, shuffleOrder, handleScore, checkLoss, checkWin, isGameOver, score, order }) {
+export function GottaFetchEmAll({id, clicked, setClicked, shuffleOrder, handleScore, checkLoss, checkWin, isGameOver, score, order, remaining }) {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
     const url =`https://pokeapi.co/api/v2/pokemon/`
@@ -34,21 +34,35 @@ export function GottaFetchEmAll({id, clicked, setClicked, shuffleOrder, handleSc
     }
 
     function playRound() {
+        //compare checked to id
         for (let i = 0; i < clicked.length; i++) {
             checkLoss(i, id)            
         }
+        //if game is not lost increase score
         handleScore()
         checkWin()
         if (isGameOver) {
+            setData(remaining)
             return 
         }
         shuffleOrder()
     }
 
     return (
-            <button className="pokeCard" onClick={() => handleClick()}>
-                <p>{data.name}</p>
-                <img src={data.sprites.front_default} alt={`${data.name} character image`} />
-            </button>
+        <div>
+            {isGameOver ?  (
+                remaining.map((item) => {(
+                    
+                <div key={data.name}>
+                    <p>{data.name}</p>
+                    <img src={data.sprites.front_default} alt={`${data.name} character image`} />
+                </div>
+              )})) : (
+                <button className="pokeCard" onClick={() => handleClick()}>
+                    <p>{data.name}</p>
+                    <img src={data.sprites.front_default} alt={`${data.name} character image`} />
+                </button>
+                )}
+            </div>
     )
 }
