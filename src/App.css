@@ -17,7 +17,7 @@
   background-color: #211d1d;
   border: solid 1px whitesmoke;
   margin: 5px;
-  
+  color: whitesmoke;
 }
 
 .cardsDiv{
@@ -44,5 +44,9 @@
    display: flex;
    flex-wrap: wrap;
   }
+
+.pokeCard{
+  font-size: .9rem;
+}
 
 }
