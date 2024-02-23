@@ -1,8 +1,11 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  background-color: #242424;
 }
 .flex {
   display: flex;
@@ -37,9 +40,7 @@
   .lvl3,
   .lvl4,
   .lvl5 {
-    grid-template-columns: repeat(3, minmax(30px, 1fr) );
+    grid-template-columns: repeat(3, minmax(40px, 1fr) );
   }
-  .pokeCard {
-    max-width: 30px;
-  }
+
 }
