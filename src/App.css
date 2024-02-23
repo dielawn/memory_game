@@ -13,12 +13,11 @@
   background-color: #211d1d;
   border: solid 1px whitesmoke;
   margin: 5px;
+  color: whitesmoke;
 }
 
-
 .cardsDiv{
-  display: grid;
- 
+  display: grid; 
 }
 
 .lvl1,
@@ -32,13 +31,12 @@
   grid-template-columns: repeat(8, minmax(50px, 1fr) );
 }
 
-
 @media screen and (max-width: 800px) {
   .lvl1,
   .lvl2,
   .lvl3,
   .lvl4,
   .lvl5 {
-    grid-template-columns: repeat(4, minmax(50px, 1fr) );
+    grid-template-columns: repeat(4, minmax(40px, 1fr) );
   }
 }
