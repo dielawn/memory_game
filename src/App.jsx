@@ -99,6 +99,7 @@ function App() {
   function checkHighScore(newScore) {
     if (newScore > highScore) {
       setHighScore(newScore)
+      setMessage('You got the high score!')
     }
   }
 
