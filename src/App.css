@@ -36,6 +36,10 @@
   grid-template-columns: repeat(8, minmax(50px, 1fr) );
 }
 
+.statsDiv {
+  min-width: 90vw;
+}
+
 @media screen and (max-width: 800px) {
   .lvl1,
   .lvl2,

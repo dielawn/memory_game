@@ -122,7 +122,7 @@ function App() {
 
   return (
    <div>
-     <div className='flex'>
+     <div className='flex statsDiv'>
      <p> Score: {score} </p>
       <p> High Score: {highScore} </p>
       <p> Level: {level} </p>
