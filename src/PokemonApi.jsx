@@ -50,19 +50,19 @@ export function GottaFetchEmAll({id, clicked, setClicked, shuffleOrder, handleSc
 
     return (
         <div>
-            {isGameOver ?  (
-                remaining.map((item) => {(
+            
+              {isGameOver ?
                     
                 <div key={data.name}>
                     <p>{data.name}</p>
                     <img src={data.sprites.front_default} alt={`${data.name} character image`} />
                 </div>
-              )})) : (
+             :
                 <button className="pokeCard" onClick={() => handleClick()}>
                     <p>{data.name}</p>
                     <img src={data.sprites.front_default} alt={`${data.name} character image`} />
-                </button>
-                )}
+                </button>}
+                
             </div>
     )
 }

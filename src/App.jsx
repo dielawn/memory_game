@@ -82,15 +82,16 @@ function App() {
       return
     } 
   }
-
+  
   function displayRemaining() {
-    setRemaining(order.filter(item => !clicked.includes(item)))
+    setRemaining(order.filter(item => !clicked.includes(item)));
   }
+  
 
   //if any element in clicked array matches current id tile has been clicked before, game over.
   function checkLoss(index, id) {   
     if (clicked[index] === id) {
-      setMessage('Gaem Over')
+      setMessage('Game Over')
      
       setIsGameOver(true)
       return
@@ -127,29 +128,55 @@ useEffect(() => {
      </div>
     
      <div className={`cardsDiv lvl${level}`}>
-      {order.map((num) => (
-         <GottaFetchEmAll  
-          key={num} 
-          id={num} 
-          clicked={clicked} 
-          setClicked={setClicked} 
-          shuffleOrder={shuffleOrder}
-          setScore={setScore}
-          score={score}
-          setIsGameOver={setIsGameOver}
-          handleScore={handleScore}
-          checkHighScore={checkHighScore}
-          checkLoss={checkLoss}
-          checkWin={checkWin}
-          isGameOver={isGameOver}
-          newGame={newGame}
-          order={order}
-          remaining={remaining}
-        />    
-      ))}
+     {isGameOver ? 
+  remaining.map((num) => (
+    <GottaFetchEmAll  
+      key={num} 
+      id={num} 
+      clicked={clicked} 
+      setClicked={setClicked} 
+      shuffleOrder={shuffleOrder}
+      setScore={setScore}
+      score={score}
+      setIsGameOver={setIsGameOver}
+      handleScore={handleScore}
+      checkHighScore={checkHighScore}
+      checkLoss={checkLoss}
+      checkWin={checkWin}
+      isGameOver={isGameOver}
+      newGame={newGame}
+      order={order}
+      remaining={remaining}
+    />
+  )) 
+: 
+  order.map((num) => (
+    <GottaFetchEmAll  
+      key={num} 
+      id={num} 
+      clicked={clicked} 
+      setClicked={setClicked} 
+      shuffleOrder={shuffleOrder}
+      setScore={setScore}
+      score={score}
+      setIsGameOver={setIsGameOver}
+      handleScore={handleScore}
+      checkHighScore={checkHighScore}
+      checkLoss={checkLoss}
+      checkWin={checkWin}
+      isGameOver={isGameOver}
+      newGame={newGame}
+      order={order}
+      remaining={remaining}
+    />
+  ))
+}
+
     </div>
       {message !== '' && <p>{message}</p>}
-      {isGameOver && <button onClick={() => newGame()}>New Game</button>}
+      {isGameOver && 
+        <button onClick={() => newGame()}>New Game</button>
+        }
       
    </div>
   )
