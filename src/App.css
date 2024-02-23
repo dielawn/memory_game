@@ -37,6 +37,6 @@
   .lvl3,
   .lvl4,
   .lvl5 {
-    grid-template-columns: repeat(3, minmax(40px, 1fr) );
+    grid-template-columns: repeat(3, minmax(30px, 1fr) );
   }
 }
