@@ -40,6 +40,7 @@ export function GottaFetchEmAll({id, clicked, setClicked, shuffleOrder, handleSc
         }
         //if game is not lost increase score
         handleScore()
+        // if game is won isGameOver set true
         checkWin()
         if (isGameOver) {
             setData(remaining)

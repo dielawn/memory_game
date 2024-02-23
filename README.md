@@ -32,7 +32,7 @@ This React application allows users to explore Pokémon characters using the [Po
 1. Clone the repository to your local machine:
     git clone https://github.com/dielawn/memory_game
 2. Navigate to the cloned repository:
-    cd pokemon-api-react-app
+    cd your-pokemon-dir
 3. Install the necessary npm packages:
     npm install
 4. Start the development server:

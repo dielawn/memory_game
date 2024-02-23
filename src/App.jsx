@@ -37,10 +37,10 @@ function App() {
     })
   }
   
-  // useEffect to shuffle before initial load
+  //shuffle before initial load
   useEffect(() => {
     shuffleOrder()
-    console.log(`Effect running: level = ${level}, gameTiles = ${gameTiles} order = ${order.length}`)
+    // console.log(`Effect running: level = ${level}, gameTiles = ${gameTiles} order = ${order.length}`)
   }, [level, gameTiles])
 
   //when level changes number of game tiles doubles 
@@ -54,7 +54,7 @@ function App() {
   //update array length to render additional tiles
   useEffect(() => {
     setOrder([...Array(gameTiles).keys()].map(i => i + 1))   
-    console.log(`Updated order based on new gameTiles: ${gameTiles}`);
+    // console.log(`Updated order based on new gameTiles: ${gameTiles}`)
   }, [gameTiles])
 
   //empty clicked array so tiles can be clicked again in new level, 
@@ -64,7 +64,6 @@ function App() {
   }, [isLevelComplete])
 
   function checkWin() {
-    //winning score for each level
     if (clicked.length + 1 === gameTiles) {
       setMessage(`You Beat Level: ${level}!`)
       setIsLevelComplete(true)
@@ -82,12 +81,11 @@ function App() {
       return
     } 
   }
-  
+
   function displayRemaining() {
     setRemaining(order.filter(item => !clicked.includes(item)));
   }
   
-
   //if any element in clicked array matches current id tile has been clicked before, game over.
   function checkLoss(index, id) {   
     if (clicked[index] === id) {
@@ -104,6 +102,7 @@ function App() {
       setHighScore(newScore)
     }
   }
+
   // increase score and check for high score
   function handleScore(){
     if (!isGameOver) {
@@ -114,9 +113,11 @@ function App() {
       })
     }
   }
-useEffect(() => {
-  displayRemaining()
-}, [isGameOver])
+
+  //displays unclicked pokemon
+  useEffect(() => {
+    displayRemaining()
+  }, [isGameOver])
 
 
   return (
