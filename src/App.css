@@ -49,6 +49,10 @@
 .pokeCard{
   font-size: .9rem;
   max-width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 img {
   max-width: 75px;
