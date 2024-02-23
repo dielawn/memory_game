@@ -13,8 +13,10 @@ This React application allows users to explore Pokémon characters using the [Po
 
 ## Features
 
-- **Guessing Game:** A game mode where users guess the name of the Pokémon from its image.
-- **High Score Tracking:** Keep track of your highest scores in the game mode.
+- **Guessing Game:** A game mode where users try not to click the same Pokémon twice in same level.
+- **High Score Tracking:** Keep track of your highest scores.
+- **Score Tracking:** Keep track of current score.
+- **5 Levels:** Each level doubles number of Pokémon.
 - **Responsive Design:** Optimized for both desktop and mobile viewing.
 
 ## Live Preview
@@ -39,8 +41,7 @@ The application should now be running on [http://localhost:3000](http://localhos
 
 ## Usage
 
-- **Exploring Pokémon:** Use the navigation bar to browse through the list of Pokémon.
-- **Playing the Game:** Access the game mode from the main menu. Try to guess as many Pokémon as possible to achieve a high score.
+- **Playing the Game:** Click any Pokémon but be careful because the order of Pokémon shuffle with each click! Automatic level up on level compleation. New Game button on game over.
 
 ## Built With
 
