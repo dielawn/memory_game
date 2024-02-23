@@ -31,7 +31,7 @@
   grid-template-columns: repeat(8, minmax(50px, 1fr) );
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1500px) {
   .lvl1,
   .lvl2,
   .lvl3,
