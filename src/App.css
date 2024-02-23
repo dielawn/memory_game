@@ -47,7 +47,7 @@
   }
 
 .pokeCard{
-  font-size: .9rem;
+  font-size: .8rem;
   max-width: 100px;
   display: flex;
   flex-direction: column;
