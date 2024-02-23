@@ -123,9 +123,9 @@ function App() {
   return (
    <div>
      <div className='flex'>
-     <p>Score: {score}</p>
-      <p>High Score: {highScore}</p>
-      <p>Level: {level}</p>
+     <p> Score: {score} </p>
+      <p> High Score: {highScore} </p>
+      <p> Level: {level} </p>
      </div>
     
      <div className={`cardsDiv lvl${level}`}>
