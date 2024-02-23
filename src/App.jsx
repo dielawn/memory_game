@@ -90,7 +90,6 @@ function App() {
   function checkLoss(index, id) {   
     if (clicked[index] === id) {
       setMessage('Game Over')
-     
       setIsGameOver(true)
       return
     }
@@ -127,6 +126,7 @@ function App() {
       <p> High Score: {highScore} </p>
       <p> Level: {level} </p>
      </div>
+     {message !== '' && <p>{message}</p>}
     
      <div className={`cardsDiv lvl${level}`}>
      {isGameOver ? 
@@ -174,7 +174,7 @@ function App() {
 }
 
     </div>
-      {message !== '' && <p>{message}</p>}
+      
       {isGameOver && 
         <button onClick={() => newGame()}>New Game</button>
         }
