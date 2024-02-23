@@ -4,7 +4,7 @@
   text-align: center;
   display: flex;
   justify-content: space-around;
-  width: 100vw;
+  max-width: 100vw;
   background-color: #242424;
   color: whitesmoke;
 }
@@ -42,7 +42,7 @@
   .lvl4,
   .lvl5 {
    display: flex;
-   overflow: wrap;
+   flex-wrap: wrap;
   }
 
 }
