@@ -6,6 +6,7 @@
   justify-content: space-around;
   width: 100vw;
   background-color: #242424;
+  color: whitesmoke;
 }
 .flex {
   display: flex;
@@ -16,7 +17,7 @@
   background-color: #211d1d;
   border: solid 1px whitesmoke;
   margin: 5px;
-  color: whitesmoke;
+  
 }
 
 .cardsDiv{
@@ -40,7 +41,7 @@
   .lvl3,
   .lvl4,
   .lvl5 {
-    grid-template-columns: repeat(3, minmax(40px, 1fr) );
+    grid-template-columns: repeat(3, minmax(35px, 1fr) );
   }
 
 }
