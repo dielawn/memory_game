@@ -17,7 +17,7 @@ function App() {
   function newGame() {
     setIsGameOver(false)
     setScore(0)
-    setMessage('Click each Pokemon only once!')
+    setMessage('You got this!')
     setClicked([])
     setGameTiles(8)
     setLevel(1)
@@ -46,7 +46,7 @@ function App() {
   //when level changes number of game tiles doubles 
   useEffect(() => {      
     setGameTiles(() => {
-      console.log(`Level updated to ${level}, recalculating gameTiles.`)
+      // console.log(`Level updated to ${level}, recalculating gameTiles.`)
       return Math.pow(2, level + 2)
     })
   }, [level])
@@ -99,7 +99,6 @@ function App() {
   function checkHighScore(newScore) {
     if (newScore > highScore) {
       setHighScore(newScore)
-      setMessage('You got the high score!')
     }
   }
 
