@@ -42,6 +42,7 @@
   .lvl4,
   .lvl5 {
    display: flex;
+   overflow: wrap;
   }
 
 }
