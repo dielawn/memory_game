@@ -64,7 +64,7 @@ function App() {
   }, [isLevelComplete])
 
   function checkWin() {
-    if (clicked.length + 1 === gameTiles) {
+    if (clicked.length + 1 === gameTiles && !isGameOver) {
       setMessage(`You Beat Level: ${level}!`)
       setIsLevelComplete(true)
       setLevel((prevLevel) => {
